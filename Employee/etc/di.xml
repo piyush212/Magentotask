@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Piyush\Employee\Api\HamburgerRepositoryInterface" type="Piyush\Employee\Model\HamburgerRepository"/>
+    <preference for="Piyush\Employee\Api\Data\HamburgerInterface" type="Piyush\Employee\Model\Hamburger"/>
+    <preference for="Piyush\Employee\Api\Data\HamburgerSearchResultsInterface" type="Piyush\Employee\Model\HamburgerSearchResult"/>
+</config>

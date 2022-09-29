@@ -1,0 +1,53 @@
+<?php
+/**
+ *@var $block \Piyush\Employee\Block\Display
+ */
+
+$employee = $block->getAllEmployee();
+?>
+<?php if (count($employee) > 0): ?>
+    
+    <table border="1">
+        <tr>
+            <th><?= __("ID") ?></th>
+            <th><?= __("Name") ?></th>
+            <th><?= __("Email_id") ?></th>
+            <th><?= __("Mobile_no") ?></th>
+            <!-- <th><?= __("Edit/Delete") ?></th> -->
+        </tr>
+        
+        <?php foreach ($employee as $emp): ?>
+            <tr>
+                <td><?php echo $emp['id']; ?></td>
+                <td><?php echo $emp['Name']; ?></td>
+                <td><?php echo $emp['Email']; ?></td>
+                <td><?php echo $emp['Mobile']; ?></td>
+                <!-- <td><a href="<?= $block->getEditPageUrl()?>">Edit </a><a href="<?= $block->getDeleteUrl()?>">Delete</a></td>todo Add the functionality of Edit and Delete Hero -->
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <h1 style="color: red"><?= __("Employee still not added :(") ?></h1>
+<?php endif; ?>
+<hr />
+<form method="post" action="<?= $block->getPostUrl() ?>">
+    <fieldset style="margin: 0 auto; width: 50%">
+        <div>
+            <label for="name"><?= __("Name") ?></label>
+                <input type="text" name="Name" required/>
+        </div>
+        <div>
+            <label for="email"><?= __("Email") ?></label>
+                <input type="email" name="Email" required/>
+        </div>
+        <div>
+            <label for="mobile"><?= __("Mobile") ?></label>
+                <input type="number" name="Mobile" required/>
+        </div>
+        <!-- <div>
+            <label for="production_company"><?= __(" Company") ?></label>
+                <input type="text" name="production_company"/>
+        </div> -->
+        <input type="submit" value="<?= __("Add Employee") ?>" />
+    </fieldset>
+</form>
