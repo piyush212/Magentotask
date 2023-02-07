@@ -1,0 +1,7 @@
+type Mutation {
+    saveSearchDetails(query: String!, number_of_product: Int!): [SaveSearchData] @doc(description:"Save Search Details")
+    @resolver(class: "Codilar\\SearchReport\\Model\\Resolver\\SaveSearchDetails")
+}
+type SaveSearchData {
+    status: String
+}
