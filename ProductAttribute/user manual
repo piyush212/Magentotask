@@ -1,0 +1,2 @@
+in this module i create a graphql who take the category id and find configurabl product on it.
+if product is configurable it get the configure name and display in graphl 
