@@ -1,0 +1,6 @@
+interface ProductInterface {
+    configure_type: [AttributeType] @resolver(class:"Codilar\\ProductAttribute\\Model\\Resolver\\ProductAttribute")
+}
+type AttributeType {
+    configurable_type: [String]
+}
