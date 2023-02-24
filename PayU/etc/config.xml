@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <payu_india>
+                <advanced>
+                    <payment_failed_email>payment_payu_india_advanced_payment_failed_email</payment_failed_email>
+                    <payment_failed_email_enabled>0</payment_failed_email_enabled>
+                </advanced>
+            </payu_india>
+        </payment>
+    </default>
+</config>

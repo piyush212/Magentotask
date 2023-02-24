@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * di.xml
+ *
+ * @module Codilar_PayU
+ * @description Modification for NexPWA Pay-U Module
+ * @author    <ankith@codilar.com>
+ * @link     https://www.codilar.com
+ * @copyright Copyright © 2021 NexPWA Pvt. Ltd.. All rights reserved
+ *
+ * Modification for NexPWA Pay-U Module
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="NexPWA\Pwa\Model\NexPWA">
+        <arguments>
+            <argument name="aliasExceptions" xsi:type="array">
+                <item name="NexPWA_PayUIndia" xsi:type="array">
+                    <item name="pay_u_modification" xsi:type="array">
+                        <item name="sort_order" xsi:type="number">1</item>
+                        <item name="type" xsi:type="string">Codilar_PayU::pwa</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="NexPWA\PayUIndia\Model\Config">
+        <plugin name="return_url_change_for_utm" type="Codilar\PayU\Plugin\Model\Config" />
+    </type>
+    <virtualType name="codilarPayULoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">var/log/codilar_payu.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="codilarPayULogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">codilarPayULogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">codilarPayULoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Codilar\PayU\Helper\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">codilarPayULogger</argument>
+        </arguments>
+    </type>
+    <type name="NexPWA\PayUIndia\Model\Method\Adapter">
+        <plugin name="codilar_payu_log" type="Codilar\PayU\Plugin\Model\Method\Adapter" />
+    </type>
+    <type name="NexPWA\PayUIndia\Model\Resolver\OrderStatusByToken\PayUIndiaResolver">
+        <plugin name="codilar_payu_email_trigger" type="Codilar\PayU\Plugin\Model\Resolver\OrderStatusByToken\PayUIndiaResolver" />
+    </type>
+</config>

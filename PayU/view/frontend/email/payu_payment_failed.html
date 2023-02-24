@@ -1,0 +1,28 @@
+<!--@subject Payment failed for your {{var store_name}} order @-->
+<!--@vars {
+"var order":"Order object",
+"var order_id":"Order ID",
+"var customer_email":"Customer Email",
+"var customer_firstname": "Customer firstname",
+"var customer_lastname": "Customer lastname",
+"var store_name":"Store name",
+"var base_url":"Base URL"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">Hi {{var customer_firstname}}</p>
+            <p>
+                Unfortunately your order #{{var order_id}} payment has failed. Any money deducted will be credited back to your account in 3-5 business days
+            </p>
+            <p>
+                In the meantime you can click <a href="{{var base_url}}cart" target="_blank">HERE</a> to go back to your cart and complete your order
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

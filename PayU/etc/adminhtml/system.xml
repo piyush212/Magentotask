@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="payu_india">
+                <group id="advanced">
+                    <field id="payment_failed_email_enabled" translate="label" type="select" sortOrder="99" showInDefault="1" canRestore="1">
+                        <label>Payment failed email enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="payment_failed_email" translate="label" type="select" sortOrder="100" showInDefault="1" canRestore="1">
+                        <label>Payment failed email</label>
+                        <source_model>Codilar\PayU\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>
