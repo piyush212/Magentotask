@@ -1,0 +1,70 @@
+<?php
+/** @var \Codilar\AdvancedReport\Block\Adminhtml\Report\View $block */
+
+use Codilar\AdvancedReport\Model\AdvancedReportParameterInterface;
+
+$reportId = $block->getReportId();
+$report = $block->getReport();
+?>
+<div class="report-container">
+    <form method="post" action="<?= $block->getUrl('*/*/generate') ?>">
+        <h1><?= $report->getLabel() ?></h1>
+        <h4><?= $report->getDescription() ?></h4>
+        <?php if (count($report->getParameters())): ?>
+            <table class="parameters">
+                <?php foreach ($report->getParameters() as $parameter): ?>
+                    <?php
+                        $parameterName = sprintf('parameter[%s]', $parameter->getName());
+                    ?>
+                    <tr class="parameter">
+                        <th class="label"><?= $parameter->getLabel() ?></th>
+                        <td class="value">
+                            <?php if ($parameter->getType() === AdvancedReportParameterInterface::TYPE_TEXTAREA): ?>
+                                <textarea name="<?= $parameterName ?>">
+                            <?= $parameter->getDefaultValue() ?>
+                        </textarea>
+                            <?php elseif ($parameter->getType() === AdvancedReportParameterInterface::TYPE_SELECT): ?>
+                                <select name="<?= $parameterName ?>">
+                                    <?php foreach ($parameter->getOptions() as $option): ?>
+                                        <option value="<?= $option['value'] ?>" <?= $parameter->getDefaultValue() === $option['value'] ? 'selected' : '' ?>><?= $option['label'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                           <?php elseif ($parameter->getType() === AdvancedReportParameterInterface::TYPE_MULTISELECT): ?>
+                                <select name="<?= $parameterName ?>[]" multiple>
+                                    <?php foreach ($parameter->getOptions() as $option): ?>
+                                        <option value="<?= $option['value'] ?>" <?= $parameter->getDefaultValue() === $option['value'] ? 'selected' : '' ?>><?= $option['label'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            <?php else: ?>
+                                <input type="<?= $parameter->getType() ?>" name="<?= $parameterName ?>" value="<?= $parameter->getDefaultValue() ?>" />
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="id" value="<?= $reportId ?>" />
+        <button type="submit" class="primary"><?= __('Generate') ?></button>
+    </form>
+</div>
+
+<style>
+    .report-container {
+        margin-top: 2rem;
+    }
+    .report-container .parameters {
+        margin-bottom: 1rem;
+    }
+    .report-container .parameters tr.parameter th.label {
+        text-align: left;
+        padding-right: 1rem;
+    }
+    .report-container .parameters tr.parameter th, .report-container .parameters tr.parameter td {
+        padding: 1rem;
+        border: 1px solid silver;
+    }
+    .report-container .parameters tr.parameter td select[multiple] {
+        min-height: 200px;
+    }
+</style>

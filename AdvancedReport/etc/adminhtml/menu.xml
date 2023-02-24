@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Codilar_AdvancedReport::all" title="Advanced Report" module="Codilar_AdvancedReport" sortOrder="1000"
+             parent="Magento_Reports::report" resource="Codilar_AdvancedReport::all"/>
+        <add id="Codilar_AdvancedReport::view" title="View" module="Codilar_AdvancedReport" sortOrder="10"
+             parent="Codilar_AdvancedReport::all" resource="Codilar_AdvancedReport::all" action="advancedreport/index/index"/>
+    </menu>
+</config>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">advancedreport_listing.advancedreport_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>advancedreport_columns</spinner>
+        <deps>
+            <dep>advancedreport_listing.advancedreport_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="advancedreport_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Codilar_AdvancedReport::all</aclResource>
+        <dataProvider class="Codilar\AdvancedReport\Ui\Component\DataProvider" name="advancedreport_listing_data_source" />
+    </dataSource>
+    <columns name="advancedreport_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">advancedreport_listing.advancedreport_listing.advancedreport_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">view</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <column name="id">
+            <settings>
+                <label translate="true">ID</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="label">
+            <settings>
+                <label translate="true">Label</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="description">
+            <settings>
+                <label translate="true">Description</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Codilar\AdvancedReport\Ui\Component\Listing\Column\ViewAction" />
+    </columns>
+</listing>
