@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Codilar\AdvancedCartRules\Model\Rule\Condition\AppliedCouponCode">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="form_name" xsi:type="string">sales_rule_form</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\SalesRule\Model\RulesApplier">
+        <plugin name="save_applied_rules" type="Codilar\AdvancedCartRules\Plugin\Model\RulesApplier" />
+    </type>
+    <type name="Codilar\AdvancedCartRules\Observer\SalesruleConditionCombine">
+        <arguments>
+            <argument name="conditions" xsi:type="array">
+                <item name="applied_coupon_code" xsi:type="array">
+                    <item name="label" xsi:type="const">Codilar\AdvancedCartRules\Model\Rule\Condition\AppliedCouponCode::LABEL</item>
+                    <item name="value" xsi:type="string">Codilar\AdvancedCartRules\Model\Rule\Condition\AppliedCouponCode</item>
+                </item>
+                <item name="customer_newsletter_subscribed" xsi:type="array">
+                    <item name="label" xsi:type="const">Codilar\AdvancedCartRules\Model\Rule\Condition\CustomerNewsletterSubscribed::LABEL</item>
+                    <item name="value" xsi:type="string">Codilar\AdvancedCartRules\Model\Rule\Condition\CustomerNewsletterSubscribed</item>
+                </item>
+                <item name="applied_sales_rule" xsi:type="array">
+                    <item name="label" xsi:type="const">Codilar\AdvancedCartRules\Model\Rule\Condition\AppliedSalesRule::LABEL</item>
+                    <item name="value" xsi:type="string">Codilar\AdvancedCartRules\Model\Rule\Condition\AppliedSalesRule</item>
+                </item>
+                <item name="customer_newsletter_subscribed_lifetime" xsi:type="array">
+                    <item name="label" xsi:type="const">Codilar\AdvancedCartRules\Model\Rule\Condition\CustomerNewsletterSubscribedLifetime::LABEL</item>
+                    <item name="value" xsi:type="string">Codilar\AdvancedCartRules\Model\Rule\Condition\CustomerNewsletterSubscribedLifetime</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
