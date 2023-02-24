@@ -1,0 +1,12 @@
+type Query {
+    getDataByPincode(pincode: String!): PincodeDataOutput
+    @resolver(class: "Codilar\\PincodeData\\Model\\Resolver\\GetDataByPincode")
+    @doc(description: "Get location data by pincode")
+}
+
+type PincodeDataOutput {
+    pincode: String
+    city: String
+    state: String
+    country: String
+}

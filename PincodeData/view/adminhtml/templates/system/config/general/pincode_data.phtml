@@ -1,0 +1,66 @@
+<?php
+/** @var \Codilar\PincodeData\Block\System\Config\General\PincodeData $block */
+$elementId = $block->getElementUniqueId();
+?>
+<tr id="<?= $elementId ?>_main_container>">
+    <td class="label">
+        <label for="<?= $elementId ?>s_container">
+            <span data-config-scope="[GLOBAL]">
+                <?= __('Import/Export') ?>
+            </span>
+        </label>
+    </td>
+    <td class="value">
+        <div class="<?= $elementId ?>s_import_export_container">
+            <div class="item upload">
+                <h2><?= __('Import') ?></h2>
+                <div id="<?= $elementId ?>_upload_form" method="post" enctype="multipart/form-data" action="<?= $block->getImportUrl() ?>">
+                    <input type="file" name="uploaded_file" />
+                    <button><?= __('Upload') ?></button>
+                </div>
+            </div>
+            <hr />
+            <div class="item download" id="<?= $elementId ?>_download_form">
+                <h2><?= __('Export') ?></h2>
+                <button data-url="<?= $block->getExportUrl() ?>>"><?= __('Download') ?></button>
+            </div>
+        </div>
+    </td>
+</tr>
+
+<script>
+    require(['jquery'], function ($) {
+        $('#<?= $elementId ?>_upload_form button').on('click', function (e) {
+            e.preventDefault();
+            var form = $('#<?= $elementId ?>_upload_form');
+            var mockForm = $('<form></form>');
+            var mockInput = form.find('input[name="uploaded_file"]').clone();
+            var formKey = $('<input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>" />');
+            mockForm.attr('method', form.attr('method'));
+            mockForm.attr('enctype', form.attr('enctype'));
+            mockForm.attr('action', form.attr('action'));
+            mockForm.append(mockInput);
+            mockForm.append(formKey);
+            mockForm.css('display', 'none');
+            $('body').append(mockForm);
+            mockForm.submit();
+        });
+
+        $('#<?= $elementId ?>_download_form button').on('click', function (e) {
+            e.preventDefault();
+            var button = $(this);
+            window.location.href = button.data('url');
+        });
+    });
+</script>
+
+<style>
+    .<?= $elementId ?>s_import_export_container {
+        padding: 1rem;
+        border: 1px solid silver;
+    }
+    .<?= $elementId ?>s_import_export_container .item {
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+</style>
