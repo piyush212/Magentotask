@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mageplaza\Shopbybrand\Block\Adminhtml\Attribute\Edit\Brand">
+        <plugin name="add_custom_fields" type="Codilar\Brand\Plugin\Block\Adminhtml\Attribute\Edit\Brand" />
+    </type>
+    <preference for="Mageplaza\Shopbybrand\Controller\Adminhtml\Attribute\Save"
+                type="Codilar\Brand\Controller\Adminhtml\Attribute\Save" />
+    <type name="ScandiPWA\UrlrewriteGraphQl\Model\Resolver\EntityUrl">
+        <plugin name="add_brand_entity" type="Codilar\Brand\Plugin\Model\Resolver\EntityUrl" />
+    </type>
+    <type name="ScandiPWA\Router\ValidationManagerInterface">
+        <plugin name="add_brand_route" type="Codilar\Brand\Plugin\Router\ValidationManager" />
+    </type>
+    <type name="NexPWA\Pwa\Model\NexPWA">
+        <arguments>
+            <argument name="aliases" xsi:type="array">
+                <item name="Codilar_Brand" xsi:type="string">Codilar_Brand::pwa</item>
+            </argument>
+            <argument name="interceptors" xsi:type="array">
+                <item name="Component/WidgetFactory/WidgetFactory.type" xsi:type="array">
+                    <item name="add-brand-widget" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">1</item>
+                        <item name="interceptor" xsi:type="string">Codilar_Brand/Plugin/Component/WidgetFactory/WidgetFactory.type</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

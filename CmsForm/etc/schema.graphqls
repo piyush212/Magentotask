@@ -1,0 +1,23 @@
+type Mutation {
+    cmsFormDataSubmit(
+        formName: String,
+        formData: CmsFormData
+        successMessage: String
+        errorMessage: String
+    ): CmsFormResponse
+    @resolver(class:"\\Codilar\\CmsForm\\Model\\Resolver\\CmsFormDataSubmit")
+}
+
+type CmsFormResponse {
+    status: Boolean
+    message: String
+}
+
+input CmsFormData {
+    items: [CmsFormDataItem]
+}
+
+input CmsFormDataItem {
+    key: String
+    value: String
+}

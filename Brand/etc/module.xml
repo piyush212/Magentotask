@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Codilar_Brand" >
+        <sequence>
+            <module name="Magento_CatalogGraphQl"/>
+            <module name="NexPWA_CatalogGraphQl"/>
+            <module name="ScandiPWA_Router"/>
+            <module name="Mageplaza_Shopbybrand"/>
+            <module name="Codilar_Wingreens"/>
+        </sequence>
+    </module>
+</config>

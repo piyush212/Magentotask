@@ -1,0 +1,23 @@
+<!--@subject Submission for form - {{var form_name}} @-->
+<!--@vars {
+"var form_name":"CMS Form Name",
+"var form_data|raw":"CMS Form Data Table HTML"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <h2 class="greeting">Submission for form - {{var form_name}}</h2>
+            <p>Find the details below</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{var form_data|raw}}
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

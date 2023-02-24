@@ -1,0 +1,34 @@
+type Query {
+    brand(identifier: String!): Brand
+    @resolver(class: "Codilar\\Brand\\Model\\Resolver\\Brand")
+    @doc(description: "Get brand info by it's identifier")
+
+    featuredBrands: [Brand]
+    @resolver(class: "Codilar\\Brand\\Model\\Resolver\\FeaturedBrands")
+    @doc(description: "Get featured brands list")
+}
+
+enum UrlRewriteEntityTypeEnum {
+    BRAND_PAGE
+}
+
+type Brand {
+    id: Int
+    title: String
+    url_key: String
+    image: String
+    banner_image: String
+    slider_id: Int
+    is_featured: Boolean
+    deals: String
+    brand_story: String
+    static_block: String
+    meta_title: String
+    meta_keywords: String
+    meta_description: String
+    primary_color: String
+    secondary_color: String
+    categories: [CategoryTree] @resolver(class: "Codilar\\Brand\\Model\\Resolver\\Brand\\Categories")
+    products: [ProductInterface] @resolver(class: "Codilar\\Brand\\Model\\Resolver\\Brand\\Products")
+}
+

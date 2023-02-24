@@ -1,0 +1,18 @@
+{
+	"name" : "codilar/importexport",
+	"description" : "Magento 2 Import / Export",
+	"require" : {
+		"php" : "~5.5.0|~5.6.0|~7.0.0|~7.1"
+	},
+	"type" : "magento2-module",
+	"version" : "3.5.1",
+	"license" : "OSL-3.0",
+	"autoload" : {
+		"files" : [
+			"registration.php"
+		],
+		"psr-4" : {
+			"Codilar\\ImportExport\\" : ""
+		}
+	}
+}

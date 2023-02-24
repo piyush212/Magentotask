@@ -1,0 +1,10 @@
+<?php
+/** @var \Codilar\CmsForm\Block\FormDataTable $block */
+?>
+<table style="width: 100%">
+    <?php foreach ($block->getFormData() as $item): ?>
+        <tr>
+            <td><strong><?= $item['key'] ?? '' ?></strong>: <?= $item['value'] ?? '' ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

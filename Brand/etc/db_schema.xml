@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageplaza_brand">
+        <column xsi:type="smallint" name="is_enabled" padding="6" unsigned="false" nullable="false" identity="false"
+                default="1" comment="Featured Brand"/>
+        <column xsi:type="smallint" name="slider_id" padding="6" unsigned="true" nullable="true" comment="Slider ID"/>
+        <column xsi:type="varchar" name="category_ids" length="255" nullable="false" default="" comment="Category IDs"/>
+        <column xsi:type="varchar" name="product_ids" length="255" nullable="false" default="" comment="Product IDs"/>
+        <column xsi:type="varchar" name="fb_pixel_id" length="255" nullable="false" default="" comment="FB Pixel ID"/>
+        <column xsi:type="varchar" name="primary_color" length="255" nullable="false" default="" comment="Primary colour"/>
+        <column xsi:type="varchar" name="secondary_color" length="255" nullable="false" default="" comment="Secondary colour"/>
+        <column xsi:type="varchar" name="banner_image" length="255" nullable="false" default="" comment="Banner Image"/>
+    </table>
+</schema>

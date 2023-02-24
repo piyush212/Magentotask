@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * db_schema.xml
+ *
+ * @module Codilar_Brand
+ * @description Feature Brand, Brands Based On Options, Category Id
+ * @author    <ankith@codilar.com>
+ * @link     https://www.codilar.com
+ * @copyright Copyright © 2020 NexPWA Pvt. Ltd.. All rights reserved
+ *
+ * Feature Brand, Brands Based On Options, Category Id
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="ScandiPWA\CmsGraphQl\Model\Template\VirtualFilter" type="ScandiPWA\CmsGraphQl\Model\Template\Filter">
+        <arguments>
+            <argument name="availableFilters" xsi:type="array">
+                <item name="FeaturedBrands" xsi:type="string">Mageplaza\Shopbybrand\Block\Widget\Featured</item>
+                <item name="BrandsBasedOnOptions" xsi:type="string">Mageplaza\Shopbybrand\Block\Widget\OptionId</item>
+                <item name="BrandsBasedOnCategoryId" xsi:type="string">Mageplaza\Shopbybrand\Block\Widget\CategoryId</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

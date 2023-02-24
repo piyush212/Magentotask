@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Log customers who's email exists but phone number is new -->
+    <type name="Codilar\MobileLogin\Model\Resolver\SendOtpAndValidateFieldsMobile">
+        <plugin name="codilar-logging" type="Codilar\Logging\Plugin\Model\Resolver\SendOtpAndValidateFieldsMobile" />
+    </type>
+
+</config>
