@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Codilar\SalesOrder\Handler\DeliveryHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/delivery_date.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Codilar\SalesOrder\Handler\DeliveryLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Codilar\SalesOrder\Handler\DeliveryHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Codilar\SalesOrder\Observer\OrderPlaceBefore">
+        <arguments>
+            <argument name="logger" xsi:type="object">Codilar\SalesOrder\Handler\DeliveryLogger</argument>
+        </arguments>
+    </type>
+</config>

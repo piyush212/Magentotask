@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="razorpay" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Razorpay</label>
+                <field id="active" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="key" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key</label>
+                </field>
+                <field id="secret" translate="label" type="password" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret</label>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="instructions" translate="label" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Instructions</label>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <group id="advanced" translate="label" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Advanced Configuration</label>
+                    <field id="order_prefix" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Order Prefix</label>
+                    </field>
+                    <field id="payment_pending_status" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Payment Pending Status</label>
+                        <comment>Only statuses belonging "payment_pending" state are shown</comment>
+                        <source_model>Codilar\Razorpay\Model\Config\Source\PendingPaymentOrderStatus</source_model>
+                    </field>
+                    <field id="payment_success_status" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Payment Successful Status</label>
+                        <comment>Only statuses belonging "processing" state are shown</comment>
+                        <source_model>Codilar\Razorpay\Model\Config\Source\ProcessingOrderStatus</source_model>
+                    </field>
+                    <field id="payment_failed_status" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Payment Failed Status</label>
+                        <comment>Only statuses belonging "canceled" state are shown</comment>
+                        <source_model>Codilar\Razorpay\Model\Config\Source\CanceledOrderStatus</source_model>
+                    </field>
+                    <field id="pending_order_cleanup_time" translate="label comment" sortOrder="50" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Cancel pending orders after</label>
+                        <comment>in minutes</comment>
+                    </field>
+                    <field id="webhook_url" translate="label comment" sortOrder="60" type="text" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Webhook URL</label>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

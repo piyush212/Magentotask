@@ -1,0 +1,22 @@
+{
+  "name": "codilar/social-login",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "nexpwa/module-pwa": "1.0.*",
+    "nexpwa/module-social-login": "1.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Codilar\\SocialLogin\\": ""
+    }
+  }
+}

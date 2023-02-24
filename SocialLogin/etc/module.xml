@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * module.xml
+ *
+ * @copyright Copyright © 2021 Codilar Technologies Pvt. Ltd.. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+<module name="Codilar_SocialLogin" >
+    <sequence>
+        <module name="Codilar_MobileLogin"/>
+        <module name="NexPWA_Pwa"/>
+        <module name="NexPWA_SocialLogin"/>
+        <module name="NexPWA_CatalogGraphQl"/>
+        <module name="Magento_CustomerGraphQl"/>
+    </sequence>
+</module>
+</config>

@@ -1,0 +1,4 @@
+type BaseOrderInfo {
+    estimated_delivery_date: String
+    state: String
+}

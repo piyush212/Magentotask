@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="codilar_social_login_payload" resource="default" engine="innodb"
+           comment="The Table to Store Social Log In Customer Info">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="500"/>
+        <column xsi:type="varchar" name="firstname" nullable="false" length="500"/>
+        <column xsi:type="varchar" name="lastname" nullable="false"/>
+        <column xsi:type="varchar" name="social_token" nullable="false" length="1024"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

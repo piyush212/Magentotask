@@ -1,0 +1,33 @@
+type Query {
+    verifyRazorpayOrderPayment(orderId: Int!): RazorpayOrderPaymentResponse
+    @resolver(class: "\\Codilar\\Razorpay\\Model\\Resolver\\VerifyRazorpayOrderPayment")
+    @doc(description: "Verify a razorpay order's payment status")
+}
+
+type Mutation {
+    createRazorpayOrder(orderToken: String!): RazorpayOrder
+    @resolver(class: "\\Codilar\\Razorpay\\Model\\Resolver\\CreateRazorpayOrder")
+    @doc(description: "Create a razorpay order from order token")
+}
+
+type RazorpayOrderPaymentResponse {
+    is_success: Boolean
+    status: String
+}
+
+type RazorpayOrder {
+    key: String
+    order_id: String
+    prefill: RazorpayOrderCustomerInfo
+    theme: RazorpayOrderThemeInfo
+}
+
+type RazorpayOrderCustomerInfo {
+    name: String
+    email: String
+    contact: String
+}
+
+type RazorpayOrderThemeInfo {
+    color: String
+}

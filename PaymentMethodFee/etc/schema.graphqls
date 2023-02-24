@@ -1,0 +1,14 @@
+type Mutation {
+    savePaymentMethod(guestCartId: String, paymentInformation: PaymentInformation): Query
+    @resolver(class:"\\Codilar\\PaymentMethodFee\\Model\\Resolver\\SavePaymentMethod")
+}
+
+interface TotalsObject {
+    payment_method_fee: Float @resolver(class: "Codilar\\PaymentMethodFee\\Model\\Resolver\\Cart\\PaymentMethodFee")
+    payment_method_fee_label: String @resolver(class: "Codilar\\PaymentMethodFee\\Model\\Resolver\\Cart\\PaymentMethodFeeLabel")
+}
+
+type BaseOrderInfo {
+    payment_method_fee: Float
+    payment_method_fee_label: String
+}

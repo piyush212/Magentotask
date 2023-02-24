@@ -1,0 +1,12 @@
+type CustomerToken {
+    is_create_account: Boolean @doc(description: "Flag to know if Customer Account is not created yet")
+    email: String @doc(description: "Customer's Email from Social Login")
+}
+type Mutation {
+    ValidateMobileOtpAndSocialSignIn(mobile_country_code: String!, mobile: String!, otp: String!, token: String!, email: String!): TokenMessageResponse @resolver(class: "Codilar\\SocialLogin\\Model\\Resolver\\ValidateMobileOtpAndCreateAccount") @doc(description: "Send otp, validate fields, and create account")
+}
+type TokenMessageResponse {
+    token: String
+    message: String
+    status: Boolean
+}

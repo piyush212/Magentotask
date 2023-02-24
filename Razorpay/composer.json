@@ -1,0 +1,27 @@
+{
+  "name": "codilar/module-razorpay",
+  "description": "Razorpay payment gateway integration",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "version": "1.0.0",
+  "require": {
+      "razorpay/razorpay": "2.*",
+      "nexpwa/module-pwa": "*",
+      "nexpwa/module-sales-graphql": "*"
+  },
+  "authors": [
+    {
+      "email": "joy@codilar.com",
+      "name": "Jayanka Ghosh"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Codilar\\Razorpay\\": ""
+    },
+    "files": [
+      "registration.php"
+    ]
+  }
+}

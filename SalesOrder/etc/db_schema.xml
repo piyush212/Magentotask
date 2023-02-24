@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order">
+        <column xsi:type="varchar" name="order_expected_delivery_date" nullable="true" length="30" comment="Order Expected Delivery Date"/>
+    </table>
+    <table name="sales_order_item">
+        <column xsi:type="varchar" name="order_item_expected_delivery_date" nullable="true" length="30" comment="Order Expected Delivery Date"/>
+    </table>
+</schema>

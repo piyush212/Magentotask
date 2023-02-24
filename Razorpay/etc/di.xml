@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="RazorpayFacade" type="Codilar\Razorpay\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Codilar\Razorpay\Model\Config::METHOD_CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Magento\Payment\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">RazorpayValueHandlerPool</argument>
+            <argument name="validatorPool" xsi:type="object">RazorpayValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">RazorpayCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RazorpayCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">Codilar\Razorpay\Model\Method\Command\Initialize</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RazorpayValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">RazorpayConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RazorpayConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">RazorpayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RazorpayConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Codilar\Razorpay\Model\Config::METHOD_CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="RazorpayValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Codilar\Razorpay\Model\Config\Source\PendingPaymentOrderStatus" type="Codilar\Razorpay\Model\Config\Source\AbstractOrderStatusSource">
+        <arguments>
+            <argument name="state" xsi:type="const">Codilar\Razorpay\Model\Config::PAYMENT_PENDING_STATE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Codilar\Razorpay\Model\Config\Source\ProcessingOrderStatus" type="Codilar\Razorpay\Model\Config\Source\AbstractOrderStatusSource">
+        <arguments>
+            <argument name="state" xsi:type="const">Codilar\Razorpay\Model\Config::PAYMENT_SUCCESS_STATE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Codilar\Razorpay\Model\Config\Source\CanceledOrderStatus" type="Codilar\Razorpay\Model\Config\Source\AbstractOrderStatusSource">
+        <arguments>
+            <argument name="state" xsi:type="const">Codilar\Razorpay\Model\Config::PAYMENT_FAILED_STATE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="codilarRazorpayLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">var/log/codilar_razorpay.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="codilarRazorpayLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">codilarRazorpayLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">codilarRazorpayLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Codilar\Razorpay\Model\LoggerService">
+        <arguments>
+            <argument name="logger" xsi:type="object">codilarRazorpayLogger</argument>
+        </arguments>
+    </type>
+
+    <type name="NexPWA\Pwa\Model\NexPWA">
+        <arguments>
+            <argument name="aliases" xsi:type="array">
+                <item name="Codilar_Razorpay" xsi:type="string">Codilar_Razorpay::pwa</item>
+            </argument>
+            <argument name="interceptors" xsi:type="array">
+                <item name="Util/OrderHandler" xsi:type="array">
+                    <item name="razorpay-order-handler" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">1</item>
+                        <item name="interceptor" xsi:type="string">Codilar_Razorpay/Plugin/Util/OrderHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="NexPWA\SalesGraphQl\Model\Resolver\OrderStatusByToken">
+        <arguments>
+            <argument name="resolvers" xsi:type="array">
+                <item name="razorpay_order_resolver" xsi:type="array">
+                    <item name="sort_order" xsi:type="number">100</item>
+                    <item name="resolver" xsi:type="object">Codilar\Razorpay\Model\Resolver\OrderStatusByToken\RazorpayResolver</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

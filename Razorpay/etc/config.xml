@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <razorpay>
+                <active>0</active>
+                <model>RazorpayFacade</model>
+                <title>Credit/Debit Card, Wallet, UPI</title>
+                <instructions><![CDATA[]]></instructions>
+                <is_gateway>1</is_gateway>
+                <payment_action>order</payment_action>
+                <can_initialize>1</can_initialize>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>0</can_authorize>
+                <can_capture>0</can_capture>
+                <can_capture_partial>0</can_capture_partial>
+                <can_authorize_vault>0</can_authorize_vault>
+                <can_capture_vault>0</can_capture_vault>
+                <can_use_internal>0</can_use_internal>
+                <can_refund_partial_per_invoice>0</can_refund_partial_per_invoice>
+                <can_refund>0</can_refund>
+                <can_void>0</can_void>
+                <can_cancel>1</can_cancel>
+                <can_edit>1</can_edit>
+                <can_review_payment>1</can_review_payment>
+                <can_deny_payment>1</can_deny_payment>
+                <allowspecific>0</allowspecific>
+                <advanced>
+                    <order_prefix>rzp_m2_</order_prefix>
+                    <payment_pending_status>razorpay_payment_pending</payment_pending_status>
+                    <payment_success_status>razorpay_payment_success</payment_success_status>
+                    <payment_failed_status>razorpay_payment_failed</payment_failed_status>
+                    <pending_order_cleanup_time>30</pending_order_cleanup_time>
+                    <webhook_url>razorpay/webhook</webhook_url>
+                </advanced>
+            </razorpay>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Codilar\SocialLogin\Api\Data\SocialLoginDataInterfaceInterface"
+                type="Codilar\SocialLogin\Model\Data\SocialLoginDataInterface"/>
+    <preference for="Codilar\SocialLogin\Api\SocialLoginManagementInterface"
+                type="Codilar\SocialLogin\Model\SocialLoginManagement"/>
+    <type name="NexPWA\SocialLogin\Model\Resolver\GetCustomerTokenBySocialLogin">
+        <plugin name="get_customer_token_by_social_login" type="Codilar\SocialLogin\Plugin\Model\Resolver\GetCustomerTokenBySocialLogin" />
+    </type>
+</config>

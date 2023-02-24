@@ -1,0 +1,84 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Sales\Block\Order\Email\Items */
+?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order) : ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table class="email-items">
+        <thead style="border-bottom: 1px solid #d1d1d1">
+        <tr>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Items')) ?>
+            </th>
+            <th class="item-qty">
+                <?= $block->escapeHtml(__('Qty')) ?>
+            </th>
+            <th class="item-price">
+                <?= $block->escapeHtml(__('Price')) ?>
+            </th>
+        </tr>
+        </thead>
+        <?php
+        $groupedItems = [];
+        foreach ($_items as $item) {
+            $groupedItems[$item['order_item_expected_delivery_date']][] = $item;
+        }
+        ksort($groupedItems);
+        ?>
+        <?php foreach ($groupedItems as $row) : ?>
+            <thead>
+            <?php foreach ($row as $key => $_item) : ?>
+                <?php if (!$_item->getParentItem()) : ?>
+                    <!--                    <dl class="item-options">-->
+                    <?php if($_item->getData('order_item_expected_delivery_date') && $key == 0) : ?>
+                        <tr style="background-color:#f2f2f2">
+                            <td style="padding: 8px">
+                                <strong><em> Estimated delivery date: </em></strong>
+                                <?= /* @noEscape */  nl2br($_item->getData('order_item_expected_delivery_date')) ?>
+                            </td>
+                            <th style="background-color: #f2f2f2;"></th>
+                            <th style="background-color: #f2f2f2;"></th>
+                        </tr>
+                    <?php endif; ?>
+                    </thead>
+                    <!--                    </dl>-->
+                    <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        <?php endforeach; ?>
+        <!--        --><?php //die('sa'); ?>
+        <tfoot class="order-totals">
+        <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+    <?php if ($this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->isMessagesAllowed('order', $_order, $_order->getStore())
+        && $_order->getGiftMessageId()
+    ) : ?>
+        <?php $_giftMessage = $this->helper(\Magento\GiftMessage\Helper\Message::class)
+            ->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage) : ?>
+            <br/>
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= $block->escapeHtml(__('Gift Message for this Order')) ?></h3>
+                        <strong><?= $block->escapeHtml(__('From:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br/><strong><?= $block->escapeHtml(__('To:')) ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br/><strong><?= $block->escapeHtml(__('Message:')) ?></strong>
+                        <br/><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

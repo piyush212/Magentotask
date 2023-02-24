@@ -1,0 +1,68 @@
+type QuoteData implements TotalsObject  {
+ customer_info: CustomerInfo @resolver(class: "Codilar\\OrderReview\\Model\\Resolver\\OrderReviewResolver")
+    @doc(description: "The customer data on Order Review Page")
+}
+
+type Query {
+    getOrderTrackingById(id: Int!): OrderTrack @resolver(class: "\\Codilar\\OrderReview\\Model\\Resolver\\OrderTrackingResolver") @doc(description: "The Order tracking query returns information about a order tracking")
+}
+
+type OrderTrack {
+    order_track_item : [OrderTrackItem]
+}
+
+type OrderTrackItem {
+    item_id: Int
+    is_product_exists: Boolean
+    product_id: Int
+    url_path: String
+    name: String
+    sku: String
+    price: Float
+    qty_ordered: Float
+    qty_invoiced: Float
+    qty_canceled: Float
+    qty_shipped: Float
+    row_total: Float
+    thumbnail: String
+    additional_options: [OrderItemOption]
+    track_number: [String]
+    status: String
+    status_label: String
+    product: ProductInterface @resolver(class: "NexPWA\\SalesGraphQl\\Model\\Resolver\\Order\\Item\\Product")
+}
+
+type OrderItemOption {
+    label: String
+    values: [String]
+}
+
+type CustomerInfo {
+    shipping_method: OrderReviewShippingMethod
+    billing_address: OrderReviewAddress
+    shipping_address: OrderReviewAddress
+    payment_method: PaymentMethod
+    available_payment_methods: [PaymentMethod]
+}
+
+type OrderReviewShippingMethod {
+    method_code: String
+    carrier_code: String
+    code: String
+    title: String
+}
+
+type OrderReviewAddress {
+    id: Int
+    city: String
+    company: String
+    country_id: String
+    firstname: String
+    lastname: String
+    middlename: String
+    prefix: String
+    region: String
+    street: String
+    telephone: String
+    postcode: String
+}
